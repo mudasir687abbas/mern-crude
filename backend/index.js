@@ -13,6 +13,7 @@ app.use(express.json());
 
 app.use("/api/users", crudRoute);
 app.use(errorHandler);
+
 export default app;
 
 // app.listen(5000, () => {
