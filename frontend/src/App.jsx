@@ -4,7 +4,8 @@ import Table from './components/Table';
 import SearchedTable from './components/SearchedTable';
 import UserForm from './components/Form';
 import Button from './components/Button';
-import {createUser,getUsers,deleteUser,updateUser,getUserById} from './api/crudeApi';
+// import {createUser,getUsers,deleteUser,updateUser,getUserById} from './api/crudeApi';
+import {getUsers,deleteUser,getUserById,updateUser,createUser} from './api/crudeApi';
 const App =()=> {
   const [users, setUsers] = useState([]);
   const [filteredUsers,setFilteredUsers] = useState([]);
@@ -12,6 +13,7 @@ const App =()=> {
   const [editIndex, setEditIndex] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [searchedTable,setSearchedTable] = useState(false);
+  
   const handleSearch = (query) => {
   const trimmedQuery = query.trim().toLowerCase();
 
@@ -36,12 +38,16 @@ const App =()=> {
     e.preventDefault();
     if(editIndex !== null) {
       const updatedUser = await updateUser(editIndex, formData);
-      if(updateUser.status === 200){
+      console.log(updatedUser)
+      if(updatedUser.status === 200){
         fetchUsers();
       }
       setEditIndex(null);
     } else {
-      const msg = await createUser(formData);
+      const response = await createUser(formData);
+      if(response.status === 200){
+        fetchUsers();
+      }
     }
     setFormData({ name: '', email: '', role: '' });
     setShowForm(false);
@@ -49,14 +55,16 @@ const App =()=> {
 
   const handleEdit = async (uid) => {
     const updatedUser = await getUserById(uid);
-    setFormData(updatedUser.data);
+    if(updatedUser.status === 200){
+     const row = await updatedUser.json();
+     setFormData(row);
+    }
     setEditIndex(uid);
     setShowForm(true);
   };
 
   const handleDelete = async (delId) => {
     const delRes = await deleteUser(delId);
-    console.log(delRes);
     if(delRes.status === 200){
       fetchUsers();
     }
@@ -70,19 +78,19 @@ const App =()=> {
   
   const fetchUsers = async () => {
     try {
-      const response = await getUsers();
-      setUsers(response.data);
+      const result = await getUsers();
+      if(result.status === 200){
+        let rows = await result.json();
+        setUsers(rows);      }
     } catch (error) {
-      console.error("Error fetching users:", error);
+      console.log(error.message);
     }
   };
 
   useEffect(() => {
     fetchUsers();
-  });
-  useEffect(() => {
-    fetchUsers();
-  },[users]);
+  },[]);
+  
   
   useEffect(() => {
     console.log(filteredUsers);

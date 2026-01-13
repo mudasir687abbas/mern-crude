@@ -1,13 +1,43 @@
-import axios from "axios";
-
-
-const API = axios.create({
-baseURL: "http://localhost:5000/api/users",
-});
-
-
-export const getUserById = (eid) => API.get(`/${eid}`);
-export const getUsers = () => API.get("/");
-export const createUser = async (data) => API.post("/", data);
-export const updateUser = (id, data) => API.put(`/${id}`, data);
-export const deleteUser = (id) => API.delete(`/${id}`);
+var serverAPI = "http://localhost:5000/api/users";
+export const getUsers = async () => {
+    const response = await fetch(serverAPI, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    return response;
+  
+};
+export const createUser = async (data) => {
+    const response = await fetch(serverAPI, {
+      method: "POST",
+      body:JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    });
+     return response;
+  
+};
+export const deleteUser = async (id) => {
+    const response = await fetch(`${serverAPI}/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+     return response;
+  
+};
+export const getUserById = async (id) => {
+    const response = await fetch(`${serverAPI}/${id}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+     return response;
+  
+};
+export const updateUser = async (id,data) => {
+    const response = await fetch(`${serverAPI}/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    });
+     return response;
+  
+};

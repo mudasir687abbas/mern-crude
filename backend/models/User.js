@@ -3,13 +3,16 @@ import db from "../config/db.js";
 const User = {
   getUsers: async () => {
     if(!db){
-      throw new Error("Database Connection Failed");
+      throw new Error("DataBase connection failed");
     }
     const [rows] = await db.query("SELECT * FROM user");
     return rows || null;
   },
 
   getUserById: async (id) => {
+    if(!db){
+      throw new Error("Database Connection Failed");
+    }
     const [rows] = await db.query(
       "SELECT * FROM user WHERE id = ?",
       [id]

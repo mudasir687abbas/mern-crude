@@ -9,5 +9,6 @@ try{
     });
   }catch(err){
     console.log("No Database");
+    db = null;
   }
 export default db;
