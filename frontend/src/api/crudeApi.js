@@ -1,4 +1,4 @@
-var serverAPI = "https://mern-crude.vercel.app/api/users";
+var serverAPI = "/api/users";
 export const getUsers = async () => {
     const response = await fetch(serverAPI, {
       method: "GET",
