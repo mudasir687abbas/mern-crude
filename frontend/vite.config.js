@@ -7,7 +7,7 @@ export default defineConfig({
   server:{
     proxy:{
        '/api' : "https://mern-crude.vercel.app"
-    }
+    },
   },
   plugins: [react(),tailwindcss()],
 })
