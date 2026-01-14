@@ -79,6 +79,7 @@ const App =()=> {
   const fetchUsers = async () => {
     try {
       const result = await getUsers();
+      console.log(result);
       if(result.status === 200){
         let rows = await result.json();
         setUsers(rows);      }
