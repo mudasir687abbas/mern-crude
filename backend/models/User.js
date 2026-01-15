@@ -5,7 +5,7 @@ const User = {
     if(!db){
       throw new Error("DataBase connection failed");
     }
-    const [rows] = await db.query("SELECT * FROM user");
+    const [rows] = await db.query("SELECT * FROM users");
     return rows || null;
   },
 
@@ -14,7 +14,7 @@ const User = {
       throw new Error("Database Connection Failed");
     }
     const [rows] = await db.query(
-      "SELECT * FROM user WHERE id = ?",
+      "SELECT * FROM users WHERE id = ?",
       [id]
     );
     return rows[0] || null;
@@ -25,7 +25,7 @@ const User = {
       throw new Error("Database Connection failed");
     }
     const [result] = await db.query(
-      "INSERT INTO user (name, role) VALUES (?, ?)",
+      "INSERT INTO users (name, role) VALUES (?, ?)",
       [name, role]
     );
     return result.insertId || null ;
@@ -36,7 +36,7 @@ const User = {
       throw new Error("Database Connection failed");
     }
     await db.query(
-      "UPDATE user SET name = ?, role = ? WHERE id = ?",
+      "UPDATE users SET name = ?, role = ? WHERE id = ?",
       [name, role, id]
     );
     return true;
@@ -46,7 +46,7 @@ const User = {
     if(!db){
       throw new Error("Database Connection failed");
     }
-    await db.query("DELETE FROM user WHERE id = ?", [id]);
+    await db.query("DELETE FROM users WHERE id = ?", [id]);
     return true;
   }
 };
