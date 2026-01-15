@@ -4,11 +4,11 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
-  server:{
-    proxy:{
-       '/api' : "https://mern-crude.vercel.app"
-    },
-  },
+  // server:{
+  //   proxy:{
+  //      '/api' : "https://mern-crude.vercel.app"
+  //   },
+  // },
   plugins: [react(),tailwindcss()],
 })
  
