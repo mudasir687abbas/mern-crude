@@ -1,6 +1,6 @@
-var serverAPI = "https://mern-crude.vercel.app/api/users";
+var serverAPI = https://mern-crude.vercel.app/api/users;
 export const getUsers = async () => {
-    const response = await fetch(serverAPI, {
+    const response = await fetch("https://mern-crude.vercel.app/api/users", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
@@ -8,7 +8,7 @@ export const getUsers = async () => {
   
 };
 export const createUser = async (data) => {
-    const response = await fetch(serverAPI, {
+    const response = await fetch("https://mern-crude.vercel.app/api/users", {
       method: "POST",
       body:JSON.stringify(data),
       headers: { "Content-Type": "application/json" },
@@ -17,7 +17,7 @@ export const createUser = async (data) => {
   
 };
 export const deleteUser = async (id) => {
-    const response = await fetch(`${serverAPI}/${id}`, {
+    const response = await fetch(`https://mern-crude.vercel.app/api/users/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
@@ -25,7 +25,7 @@ export const deleteUser = async (id) => {
   
 };
 export const getUserById = async (id) => {
-    const response = await fetch(`${serverAPI}/${id}`, {
+    const response = await fetch(`https://mern-crude.vercel.app/api/users/${id}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
@@ -33,7 +33,7 @@ export const getUserById = async (id) => {
   
 };
 export const updateUser = async (id,data) => {
-    const response = await fetch(`${serverAPI}/${id}`, {
+    const response = await fetch(`https://mern-crude.vercel.app/api/users/${id}`, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" },
