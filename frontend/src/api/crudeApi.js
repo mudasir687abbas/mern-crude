@@ -10,7 +10,7 @@ export const getUsers = async () => {
 export const createUser = async (data) => {
     const response = await fetch("https://mern-crude.vercel.app/api/users", {
       method: "POST",
-      body:JSON.stringify(data),
+      body:data,
       headers: { "Content-Type": "application/json" },
     });
      return response;
