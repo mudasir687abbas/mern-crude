@@ -79,9 +79,9 @@ const App =()=> {
   const fetchUsers = async () => {
     try {
       const result = await getUsers();
-      console.log(result);
       if(result.status === 200){
         let rows = await result.json();
+        console.log(rows);
         setUsers(rows);      }
     } catch (error) {
       console.log(error.message);
