@@ -18,14 +18,14 @@ export const getUserById = async (req, res) => {
 };
 
 export const addUser = async (req, res) => {
-  const { name, role,id } = req.body;
-  const insertedId = await User.createUser(name, role);
+  const { name, email, role} = req.body;
+  const insertedId = await User.createUser(name, email, role);
   res.json({ message: "User created", insertedId });
 };
 
 export const editUser = async (req, res) => {
-  const { name, role} = req.body;
-  await User.updateUser(req.params.uid, name, role);
+  const { name, email, role} = req.body;
+  await User.updateUser(req.params.uid, name, email,  role);
   res.json({ message: "User updated" });
 };
 
