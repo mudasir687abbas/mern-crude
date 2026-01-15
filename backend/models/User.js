@@ -20,24 +20,24 @@ const User = {
     return rows[0] || null;
   },
 
-  createUser: async (name, role) => {
+  createUser: async (name,email, role) => {
     if(!db){
       throw new Error("Database Connection failed");
     }
     const [result] = await db.query(
-      "INSERT INTO users (name, role) VALUES (?, ?)",
-      [name, role]
+      "INSERT INTO users (name,email, role) VALUES (?, ?, ?)",
+      [name, email, role]
     );
     return result.insertId || null ;
   },
 
-  updateUser: async (id, name, role) => {
+  updateUser: async (id, name, email, role) => {
     if(!db){
       throw new Error("Database Connection failed");
     }
     await db.query(
-      "UPDATE users SET name = ?, role = ? WHERE id = ?",
-      [name, role, id]
+      "UPDATE users SET name = ?, email=?, role = ? WHERE id = ?",
+      [name, email, role, id]
     );
     return true;
   },
